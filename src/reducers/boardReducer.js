@@ -21,11 +21,11 @@ const initialState = {
 };
 
 const boardReducer = (state = initialState, action) => {
-	let newState = { ...state };
+	var newState = { ...state };
 	switch (action.type) {
 		case "ADDBOARD":
 			const board = {
-				id: Math.floor(Math.random() * 1000),
+				id: action.payload.id,
 				title: action.payload,
 				lists: []
 			};
@@ -33,7 +33,7 @@ const boardReducer = (state = initialState, action) => {
 			return newState;
 		case "ADDLIST":
 			const list = {
-				id: Math.floor(Math.random() * 1000),
+				id: action.payload.id,
 				title: action.payload.title,
 				cards: []
 			};
@@ -45,27 +45,25 @@ const boardReducer = (state = initialState, action) => {
 			}
 			return state;
 		case "ADDCARD":
-			console.log("Add card:", action.payload);
 			const card = {
-				id: Math.floor(Math.random() * 1000),
+				id: action.payload.id,
 				text: action.payload.title
 			};
-			newState = state.boards.map(board => {
-				if (board.id === action.payload.board) {
-					board.lists.map(list => {
-						if (list.id === action.payload.list) {
-							return {
-								...list,
-								cards: [...list.cards, card]
-							};
-						} else {
-							//return list;
+			for (let i = 0; i < state.boards.length; ++i) {
+				if (state.boards[i].id === action.payload.board) {
+					for (let o = 0; o < state.boards[i].lists.length; ++o) {
+						if (state.boards[i].lists[o].id === action.payload.list) {
+							console.log("Cards Before", newState.boards[i].lists[o].cards);
+							newState.boards[i].lists[o].cards = [
+								...newState.boards[i].lists[o].cards,
+								card
+							];
+							console.log("Cards After", newState.boards[i].lists[o].cards);
+							return newState;
 						}
-					});
-				} else {
-					//return board;
+					}
 				}
-			});
+			}
 			return newState;
 		case "VIEWBOARD":
 			newState = { ...state };
