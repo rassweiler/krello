@@ -1,4 +1,4 @@
-import "./css/main.css";
+import "./app.scss";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Navbar from "./components/navbar";
