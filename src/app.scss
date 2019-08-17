@@ -163,60 +163,6 @@ body {
 	background-color: $colour-bg;
 }
 
-nav {
-	background-color: rgba($colour-secondary, 0.95);
-	width: 100%;
-	height: $nav-height;
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 10;
-	display: inline-flex;
-	.navbar-brand {
-		color: $colour-primary;
-		text-decoration: none;
-		cursor: pointer;
-		font-size: 2rem;
-		font-weight: bolder;
-		padding: 0.5rem;
-		display: flex;
-		img {
-			height: $nav-height - 1rem;
-			width: auto;
-			padding-right: 0.5rem;
-		}
-		&:hover,
-		&:active,
-		&:focus {
-			text-shadow: 2px 2px darken($colour-primary, 70%);
-		}
-	}
-	.navbar-menu {
-		padding: 0.8rem;
-		font-size: 1.5rem;
-		font-weight: bolder;
-		margin-left: 1rem;
-		.navbar-menu-list {
-			display: flex;
-			.navbar-menu-list-item {
-				margin-right: 1rem;
-				a {
-					text-decoration: none;
-					cursor: pointer;
-					color: $colour-tertiary;
-					svg {
-						padding-right: 0.5rem;
-					}
-					&:hover,
-					&:active,
-					&:focus {
-						text-shadow: 2px 2px darken($colour-tertiary, 70%);
-					}
-				}
-			}
-		}
-	}
-}
 .krello-title {
 	margin-top: $nav-height;
 	width: 100%;
@@ -342,44 +288,6 @@ nav {
 				}
 				.krello-list-cards {
 					display: block;
-					.krello-card {
-						margin-top: 0.4rem;
-						border-radius: 0.3rem;
-						background-color: $colour-bg;
-						padding: 0.4rem;
-						box-shadow: 1px 1px darken($colour-bg, 40%);
-						cursor: pointer;
-						@include noSelect();
-						&:hover,
-						&:active,
-						&:focus {
-							background-color: darken($colour-bg, 10%);
-						}
-						.krello-card-menu {
-							display: flex;
-							margin-top: 0.4rem;
-							.krello-card-menu-item {
-								cursor: pointer;
-								margin-right: 0.5rem;
-								&.fa-trash {
-									color: $colour-primary;
-									&:hover,
-									&:active,
-									&:focus {
-										color: darken($colour-primary, 30%);
-									}
-								}
-								&.fa-info-circle {
-									color: $colour-secondary;
-									&:hover,
-									&:active,
-									&:focus {
-										color: darken($colour-secondary, 30%);
-									}
-								}
-							}
-						}
-					}
 				}
 				.krello-list-add {
 					display: flex;

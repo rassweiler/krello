@@ -1,26 +1,27 @@
 import React, { Component } from "react";
 import "./styles.scss";
-import logo from "../img/logo.png";
+import logo from "../../img/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClipboardList, faPortrait } from "@fortawesome/free-solid-svg-icons";
-import { connect } from "react-redux";
-import { viewBoard } from "../actions";
 
 class Navbar extends Component {
 	viewBoard = () => {
-		const { dispatch } = this.props;
-		dispatch(viewBoard(-1));
+		//Routing logic
 	};
 	render() {
 		return (
-			<nav className="navbar navbar-light bg-light">
+			<nav className="component-navbar" test-data="navbar-container">
 				<a className="navbar-brand" href="/">
-					<img src={logo} alt="" />
+					<img
+						test-data="navbar-image"
+						src={logo}
+						alt="Navbar branding image"
+					/>
 					KRello
 				</a>
 				<div className="navbar-menu">
-					<ul className="navbar-menu-list">
-						<li className="navbar-menu-list-item">
+					<ul className="navbar-menu-list" test-data="navbar-menu-list">
+						<li className="navbar-menu-list-item" test-data="navbar-menu-item">
 							<a onClick={this.viewBoard}>
 								<FontAwesomeIcon
 									icon={faClipboardList}
@@ -29,7 +30,7 @@ class Navbar extends Component {
 								Boards
 							</a>
 						</li>
-						<li className="navbar-menu-list-item">
+						<li className="navbar-menu-list-item" test-data="navbar-menu-item">
 							<a href="https://www.kylerassweiler.com">
 								<FontAwesomeIcon
 									icon={faPortrait}
@@ -45,4 +46,4 @@ class Navbar extends Component {
 	}
 }
 
-export default connect()(Navbar);
+export default Navbar;
