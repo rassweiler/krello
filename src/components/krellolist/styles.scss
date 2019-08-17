@@ -1,0 +1,45 @@
+$colour-bg: #e1e9f3;
+$colour-primary: #d9534f;
+$colour-secondary: #3a4654;
+$colour-tertiary: #8eb8e7;
+$colour-add: #35ec35;
+$nav-height: 3rem;
+
+@mixin noSelect() {
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+.krello-list {
+	min-width: 20rem;
+	height: 100%;
+	margin: 0.5rem;
+	padding: 0.5rem;
+	background-color: lighten($colour-tertiary, 0%);
+	border-radius: 0.3rem;
+	.krello-list-title {
+		width: 100%;
+		text-align: center;
+		font-weight: bold;
+		font-size: 1.2rem;
+		cursor: pointer;
+		@include noSelect();
+		.krello-list-title-delete {
+			float: right;
+			color: $colour-primary;
+			cursor: pointer;
+			&:hover,
+			&:active,
+			&:focus {
+				color: darken($colour-primary, 30%);
+			}
+		}
+	}
+	.krello-list-cards {
+		display: block;
+	}
+}

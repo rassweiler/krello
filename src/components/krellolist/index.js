@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import KrelloCard from "./krellocard";
-import KrelloAddButton from "./krelloAddButton";
+import "./styles.scss";
+import KrelloCard from "../krellocard";
+import KrelloAddButton from "../krelloaddbutton/";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 

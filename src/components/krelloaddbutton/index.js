@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import "./styles.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faWindowClose } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
-import { addBoard, addList, addCard } from "../actions";
+import { addBoard, addList, addCard } from "../../actions";
 
 class KrelloAddButton extends Component {
 	state = {

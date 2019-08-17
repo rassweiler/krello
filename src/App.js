@@ -2,8 +2,8 @@ import "./app.scss";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Navbar from "./components/navbar/";
-import KrelloAddButton from "./components/krelloAddButton";
-import KrelloBoard from "./components/krelloboard";
+import KrelloAddButton from "./components/krelloaddbutton/";
+import KrelloBoard from "./components/krelloboard/";
 import boardReducer from "./reducers/boardReducer";
 
 class App extends Component {

@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import KrelloList from "./krellolist";
-import KrelloAddButton from "./krelloAddButton";
+import "./styles.scss";
+import KrelloList from "../krellolist";
+import KrelloAddButton from "../krelloaddbutton";
 import { connect } from "react-redux";
-import { viewBoard } from "../actions";
+import { viewBoard } from "../../actions";
 
 class KrelloBoard extends Component {
 	viewCurrentBoard = () => {
