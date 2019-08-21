@@ -20,7 +20,7 @@ const boardListReducer = (state = initialState, action) => {
 				boardId,
 				type
 			} = action.payload;
-			//Same list
+
 			if (type === "board") {
 				const newState = state;
 				const board = newState.splice(indexStart, 1);

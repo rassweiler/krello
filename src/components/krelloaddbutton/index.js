@@ -9,10 +9,9 @@ class KrelloAddButton extends PureComponent {
 	state = {
 		formOpen: false,
 		text: "",
-		height: "50px"
+		height: "30px"
 	};
 	openForm = () => {
-		console.log("In open form");
 		this.setState({
 			formOpen: true
 		});
@@ -26,7 +25,7 @@ class KrelloAddButton extends PureComponent {
 		this.setState({
 			formOpen: false,
 			text: "",
-			height: "50px"
+			height: "30px"
 		});
 	};
 	handleInput = e => {
@@ -38,7 +37,6 @@ class KrelloAddButton extends PureComponent {
 		});
 	};
 	handleAddList = () => {
-		console.log("Add List");
 		const { dispatch, boardId } = this.props;
 		const { text } = this.state;
 		if (text) {
@@ -47,11 +45,10 @@ class KrelloAddButton extends PureComponent {
 		}
 	};
 	handleAddCard = () => {
-		console.log("Add Card");
-		const { dispatch, boardId, listId } = this.props;
+		const { dispatch, listId } = this.props;
 		const { text } = this.state;
 		if (text) {
-			dispatch(addCard(text, boardId, listId));
+			dispatch(addCard(text, listId));
 			this.clearForm();
 		}
 		return;

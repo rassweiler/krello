@@ -7,15 +7,28 @@ import KrelloList from "../krellolist";
 import KrelloAddButton from "../krelloaddbutton";
 
 class KrelloBoard extends Component {
+	state = {
+		formOpen: false,
+		boardTitle: ""
+	};
 	componentDidMount() {
 		const { boardId } = this.props.match.params;
 		this.props.dispatch(activeBoard(boardId));
-		console.log("BoardId:", boardId);
 	}
+	openForm = () => {
+		this.setState({
+			formOpen: true
+		});
+	};
+	closeForm = () => {
+		this.setState({
+			formOpen: false
+		});
+	};
 
 	onDragEnd = result => {
 		const { destination, source, draggableId, type } = result;
-
+		const { boardId } = this.props.match.params;
 		if (!destination) {
 			return;
 		}
@@ -26,11 +39,27 @@ class KrelloBoard extends Component {
 				source.index,
 				destination.index,
 				draggableId,
-				type
+				type,
+				boardId
 			)
 		);
 	};
 
+	onChange = event => {
+		const { boardId } = this.props.match.params;
+		this.props.dispatch(editBoard(event.target.value, boardId));
+	};
+	renderEditForm = title => {
+		return (
+			<input
+				type="text"
+				autoFocus
+				value={title}
+				onChange={this.onChange}
+				onBlur={this.closeForm}
+			/>
+		);
+	};
 	render() {
 		const { boards, lists, cards, match } = this.props;
 		const { boardId } = match.params;
@@ -45,7 +74,11 @@ class KrelloBoard extends Component {
 		return (
 			<DragDropContext onDragEnd={this.onDragEnd}>
 				<div className="krello-board">
-					<div className="krello-board-title">{board.title}</div>
+					<div className="krello-board-title" onClick={this.openForm}>
+						{this.state.formOpen
+							? this.renderEditForm(board.title)
+							: board.title}
+					</div>
 					<Droppable droppableId="all-lists" direction="horizontal" type="list">
 						{provided => (
 							<div className="krello-board-lists" ref={provided.innerRef}>

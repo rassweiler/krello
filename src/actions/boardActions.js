@@ -1,7 +1,6 @@
 import uuid from "uuidv4";
 
 export const addBoard = title => {
-	console.log("At action addBoard");
 	if (title) {
 		return {
 			type: "ADDBOARD",
@@ -40,12 +39,21 @@ export const sortBoard = (
 	idEnd,
 	indexStart,
 	indexEnd,
-	listId,
-	type
+	draggableId,
+	type,
+	boardId
 ) => {
 	return {
 		type: "SORTBOARD",
-		payload: { idStart, idEnd, indexStart, indexEnd, listId, type }
+		payload: {
+			idStart,
+			idEnd,
+			indexStart,
+			indexEnd,
+			draggableId,
+			type,
+			boardId
+		}
 	};
 };
 

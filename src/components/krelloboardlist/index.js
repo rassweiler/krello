@@ -32,6 +32,7 @@ const KrelloBoardList = ({ boards, boardList, dispatch }) => {
 		if (!destination) {
 			return;
 		}
+
 		dispatch(
 			sortBoardList(
 				source.droppableId,
@@ -102,7 +103,12 @@ const KrelloBoardList = ({ boards, boardList, dispatch }) => {
 		<DragDropContext onDragEnd={onDragEnd}>
 			<div className="krello-boardlist">
 				<div className="krello-boardlist-title">List Of Boards</div>
-				<Droppable droppableId="all-boards" direction="vertical" type="board">
+				<Droppable
+					droppableId="all-boards"
+					direction="vertical"
+					type="board"
+					isCombineEnabled
+				>
 					{provided => (
 						<div
 							className="krello-boardlist-boards"

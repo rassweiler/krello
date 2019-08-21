@@ -10,8 +10,7 @@ const KrelloCard = React.memo(
 	({ text, boardId, listId, cardId, index, dispatch }) => {
 		const [editing, setEditing] = useState(false);
 		const [cardText, setCardText] = useState(text);
-		const [height, setHeight] = useState("50px");
-		const onEdit = () => {};
+		const [textHeight, setTextHeight] = useState("");
 		const onDelete = () => {
 			dispatch(removeCard(boardId, listId, cardId));
 		};
@@ -19,11 +18,19 @@ const KrelloCard = React.memo(
 			setEditing(false);
 			dispatch(editCard(cardText, boardId, listId, cardId));
 		};
+		const onFocus = event => {
+			if (textHeight === "") {
+				event.target.style.height = event.target.scrollHeight + "px";
+				setTextHeight(event.target.scrollHeight + "px");
+			} else {
+				event.target.style.height = textHeight;
+			}
+		};
 		const handleChange = event => {
 			const height = event.target.scrollHeight + "px";
 			event.target.style.height = height;
 			setCardText(event.target.value);
-			setHeight(height);
+			setTextHeight(height);
 		};
 		const renderEditForm = () => {
 			return (
@@ -34,6 +41,7 @@ const KrelloCard = React.memo(
 						value={cardText}
 						onChange={handleChange}
 						onBlur={onBlur}
+						onFocus={onFocus}
 					/>
 				</div>
 			);
@@ -49,9 +57,16 @@ const KrelloCard = React.memo(
 							className="krello-card"
 							test-data="card-container"
 						>
-							<p className="krello-card-text" test-data="card-text">
-								{text}
-							</p>
+							<textarea
+								type="text"
+								className="krello-card-text"
+								test-data="card-text"
+								onClick={() => setEditing(true)}
+								value={text}
+								readOnly
+								onFocus={onFocus}
+								autoFocus
+							/>
 							<div className="krello-card-menu" test-data="card-menu">
 								<FontAwesomeIcon
 									icon={faTrash}

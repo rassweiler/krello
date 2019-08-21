@@ -44,15 +44,20 @@ const boardReducer = (state = initialState, action) => {
 				idEnd,
 				indexStart,
 				indexEnd,
-				listId,
-				type
+				draggableId,
+				type,
+				boardId
 			} = action.payload;
-			//Same list
-			if (idStart === idEnd) {
-				const list = state.find(list => idStart === list.id);
-				const card = list.cards.splice(indexStart, 1);
-				list.cards.splice(indexEnd, 0, ...card);
-				return { ...state, [idStart]: list };
+
+			if (type === "list") {
+				const board = state[boardId];
+				const lists = board.lists;
+				if (lists) {
+					const list = lists.splice(indexStart, 1);
+					lists.splice(indexEnd, 0, ...list);
+					board.lists = lists;
+					return { ...state, [boardId]: board };
+				}
 			}
 			return state;
 		}

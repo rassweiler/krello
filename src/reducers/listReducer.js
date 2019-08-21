@@ -29,19 +29,24 @@ const listReducer = (state = initialState, action) => {
 			return newState;
 		}
 		case "EDITLIST": {
-			const { listId, title, boardId } = action.payload;
-			const list = {
-				id: listId,
-				title: title,
-				board: boardId,
-				cards: []
-			};
-			return { ...state, [listId]: list };
+			const { listId, title } = action.payload;
+			if (title) {
+				const list = state[listId];
+				list.title = title;
+				return { ...state, [listId]: list };
+			}
+			return state;
 		}
 		case "ADDCARD": {
 			const { listId, cardId } = action.payload;
 			const list = state[listId];
 			list.cards = [...list.cards, cardId];
+			return { ...state, [listId]: list };
+		}
+		case "REMOVECARD": {
+			const { listId, cardId } = action.payload;
+			const list = state[listId];
+			list.cards = list.cards.filter(id => id !== cardId);
 			return { ...state, [listId]: list };
 		}
 		default:

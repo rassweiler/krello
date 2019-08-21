@@ -53,7 +53,7 @@ $nav-height: 3rem;
 	}
 	textarea {
 		width: 100%;
-		min-height: 50px;
+		min-height: 30px;
 		height: auto;
 		resize: none;
 		overflow: hidden;
@@ -62,5 +62,10 @@ $nav-height: 3rem;
 		padding: 0.3rem;
 		box-shadow: 1px 1px darken($colour-bg, 40%);
 		box-sizing: border-box;
+		&.krello-card-text {
+			cursor: pointer;
+			height: 30px;
+			min-height: 30px;
+		}
 	}
 }
