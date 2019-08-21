@@ -1,32 +1,64 @@
 import uuid from "uuidv4";
 
 export const addBoard = title => {
-	const id = uuid();
+	console.log("At action addBoard");
+	if (title) {
+		return {
+			type: "ADDBOARD",
+			payload: { title, boardId: uuid() }
+		};
+	} else {
+		return {
+			type: ""
+		};
+	}
+};
+
+export const editBoard = (title, boardId) => {
 	return {
-		type: "ADDBOARD",
-		payload: { title, id }
+		type: "EDITBOARD",
+		payload: { title, boardId }
 	};
 };
 
-export const addList = (title, board) => {
-	const id = uuid();
+export const removeBoard = boardId => {
 	return {
-		type: "ADDLIST",
-		payload: { title, board, id }
+		type: "REMOVEBOARD",
+		payload: { boardId }
 	};
 };
 
-export const addCard = (title, board, list) => {
-	const id = uuid();
+export const activeBoard = boardId => {
 	return {
-		type: "ADDCARD",
-		payload: { title, board, list, id }
+		type: "ACTIVEBOARD",
+		payload: { boardId }
 	};
 };
 
-export const viewBoard = board => {
+export const sortBoard = (
+	idStart,
+	idEnd,
+	indexStart,
+	indexEnd,
+	listId,
+	type
+) => {
 	return {
-		type: "VIEWBOARD",
-		payload: board
+		type: "SORTBOARD",
+		payload: { idStart, idEnd, indexStart, indexEnd, listId, type }
+	};
+};
+
+export const sortBoardList = (
+	idStart,
+	idEnd,
+	indexStart,
+	indexEnd,
+	boardId,
+	type
+) => {
+	return {
+		type: "SORTBOARDLIST",
+		payload: { idStart, idEnd, indexStart, indexEnd, boardId, type }
 	};
 };

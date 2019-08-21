@@ -1,0 +1,48 @@
+@mixin noSelect() {
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+$colour-bg: #e1e9f3;
+$colour-primary: #d9534f;
+$colour-secondary: #3a4654;
+$colour-tertiary: #8eb8e7;
+$colour-add: #35ec35;
+$nav-height: 3rem;
+
+.krello-board-tumbnail {
+	padding: 1rem;
+	border: $colour-secondary 1px solid;
+	border-radius: 0.5rem;
+	background-color: darken($colour-bg, 10%);
+	box-shadow: 1px 1px darken($colour-bg, 40%);
+	display: flex;
+	&:hover,
+	&:active,
+	&:focus {
+		background-color: darken($colour-bg, 20%);
+	}
+	.krello-board-thumbnail-link {
+		width: 100%;
+		text-decoration: none;
+		.krello-board-thumbnail-title {
+			text-align: center;
+			font-size: 1.5rem;
+			font-weight: bolder;
+			color: $colour-secondary;
+		}
+	}
+	.krello-board-thumbnail-delete {
+		color: $colour-primary;
+		&:hover,
+		&:active,
+		&:focus {
+			cursor: pointer;
+			color: darken($colour-primary, 20%);
+		}
+	}
+}

@@ -1,5 +1,6 @@
 import "./app.scss";
 import React, { Component } from "react";
+import Routes from "./routes";
 import { connect } from "react-redux";
 import { DragDropContext } from "react-beautiful-dnd";
 import Navbar from "./components/navbar/";
@@ -7,6 +8,20 @@ import KrelloAddButton from "./components/krelloaddbutton/";
 import KrelloBoard from "./components/krelloboard/";
 import { sortList } from "./actions";
 
+class App extends Component {
+	render() {
+		return (
+			<>
+				<Navbar />
+				<Routes />
+			</>
+		);
+	}
+}
+
+export default App;
+
+/*
 class App extends Component {
 	onDragEnd = result => {
 		const { destination, source, draggableId } = result;
@@ -65,3 +80,4 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(App);
+*/

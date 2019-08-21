@@ -28,6 +28,10 @@ $nav-height: 3rem;
 		font-size: 1.2rem;
 		cursor: pointer;
 		@include noSelect();
+		display: flex;
+		.krello-list-title-text {
+			width: 100%;
+		}
 		.krello-list-title-delete {
 			float: right;
 			color: $colour-primary;
@@ -37,6 +41,18 @@ $nav-height: 3rem;
 			&:focus {
 				color: darken($colour-primary, 30%);
 			}
+		}
+		input {
+			width: 100%;
+			min-height: 30px;
+			height: auto;
+			resize: none;
+			overflow: hidden;
+			border: none;
+			border-radius: 0.3rem;
+			padding: 0.3rem;
+			box-shadow: 1px 1px darken($colour-bg, 40%);
+			box-sizing: border-box;
 		}
 	}
 	.krello-list-cards {

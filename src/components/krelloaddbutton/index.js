@@ -1,17 +1,18 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./styles.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faWindowClose } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
-import { addBoard, addList, addCard } from "../../actions";
+import { addList, addCard } from "../../actions";
 
-class KrelloAddButton extends Component {
+class KrelloAddButton extends PureComponent {
 	state = {
 		formOpen: false,
 		text: "",
 		height: "50px"
 	};
 	openForm = () => {
+		console.log("In open form");
 		this.setState({
 			formOpen: true
 		});
@@ -36,42 +37,29 @@ class KrelloAddButton extends Component {
 			height: height
 		});
 	};
-	handleAddBoard = () => {
-		console.log("Add Board");
-		const { dispatch } = this.props;
-		const { text } = this.state;
-		if (text) {
-			dispatch(addBoard(text));
-			this.clearForm();
-		}
-	};
 	handleAddList = () => {
 		console.log("Add List");
-		const { dispatch, board } = this.props;
+		const { dispatch, boardId } = this.props;
 		const { text } = this.state;
 		if (text) {
-			dispatch(addList(text, board));
+			dispatch(addList(text, boardId));
 			this.clearForm();
 		}
 	};
 	handleAddCard = () => {
 		console.log("Add Card");
-		const { dispatch, board, list } = this.props;
+		const { dispatch, boardId, listId } = this.props;
 		const { text } = this.state;
 		if (text) {
-			dispatch(addCard(text, board, list));
+			dispatch(addCard(text, boardId, listId));
 			this.clearForm();
 		}
 		return;
 	};
 	renderButton = () => {
-		const { boards, lists } = this.props;
-		const text = boards ? "Add Board" : lists ? "Add List" : "Add Card";
-		const className = boards
-			? "krello-board-add"
-			: lists
-			? "krello-board-lists-add"
-			: "krello-list-add";
+		const { list } = this.props;
+		const text = list ? "Add List" : "Add Card";
+		const className = list ? "krello-board-lists-add" : "krello-list-add";
 
 		return (
 			<div className={className} onClick={this.openForm}>
@@ -81,23 +69,13 @@ class KrelloAddButton extends Component {
 		);
 	};
 	renderForm = () => {
-		const { boards, lists } = this.props;
-		const buttonText = boards ? "Add Board" : lists ? "Add List" : "Add Card";
-		const text = boards
-			? "Enter Board Title"
-			: lists
-			? "Enter List Title"
-			: "Enter Card Title";
-		const className = boards
-			? "krello-board-add open"
-			: lists
+		const { list } = this.props;
+		const buttonText = list ? "Add List" : "Add Card";
+		const text = list ? "Enter List Title" : "Enter Card Title";
+		const className = list
 			? "krello-board-lists-add open"
 			: "krello-list-add open";
-		const func = boards
-			? this.handleAddBoard
-			: lists
-			? this.handleAddList
-			: this.handleAddCard;
+		const func = list ? this.handleAddList : this.handleAddCard;
 
 		return (
 			<div className={className}>

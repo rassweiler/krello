@@ -5,9 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClipboardList, faPortrait } from "@fortawesome/free-solid-svg-icons";
 
 class Navbar extends Component {
-	viewBoard = () => {
-		//Routing logic
-	};
 	render() {
 		return (
 			<nav className="component-navbar" test-data="navbar-container">
@@ -22,7 +19,7 @@ class Navbar extends Component {
 				<div className="navbar-menu">
 					<ul className="navbar-menu-list" test-data="navbar-menu-list">
 						<li className="navbar-menu-list-item" test-data="navbar-menu-item">
-							<a onClick={this.viewBoard}>
+							<a href="/">
 								<FontAwesomeIcon
 									icon={faClipboardList}
 									className="krello-card-menu-item"

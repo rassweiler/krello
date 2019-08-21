@@ -1,0 +1,96 @@
+@mixin noSelect() {
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+$colour-bg: #e1e9f3;
+$colour-primary: #d9534f;
+$colour-secondary: #3a4654;
+$colour-tertiary: #8eb8e7;
+$colour-add: #35ec35;
+$nav-height: 3rem;
+
+.krello-boardlist {
+	.krello-boardlist-title {
+		margin-top: $nav-height;
+		width: 100%;
+		text-align: center;
+		font-size: 1.5rem;
+		font-weight: bolder;
+		border-bottom: $colour-secondary 1px solid;
+		background-color: darken($colour-bg, 10%);
+		padding-top: 1rem;
+	}
+	.krello-boardlist-boards {
+		padding: $nav-height;
+		flex-wrap: wrap;
+		.krello-boardlist-boards-link {
+			margin: 0.5rem;
+			text-decoration: none;
+		}
+	}
+	.krello-boardlist-form {
+		min-width: 18rem;
+		margin: 0.5rem;
+		padding: 0.5rem;
+		border: $colour-secondary 1px solid;
+		border-radius: 0.5rem;
+		background-color: lighten($colour-primary, 35%);
+		box-shadow: 1px 1px darken($colour-primary, 40%);
+		h2 {
+			width: 100%;
+			text-align: center;
+			font-size: 1.2rem;
+			font-weight: bolder;
+			color: $colour-secondary;
+			margin-bottom: 0.5rem;
+			@include noSelect();
+			cursor: pointer;
+		}
+		input {
+			width: 100%;
+			min-height: 40px;
+			height: auto;
+			resize: none;
+			overflow: hidden;
+			border: none;
+			border-radius: 0.3rem;
+			padding: 0.3rem;
+			box-shadow: 1px 1px darken($colour-bg, 40%);
+			box-sizing: border-box;
+		}
+		.krello-boardlist-form-menu {
+			display: flex;
+			button {
+				background-color: $colour-add;
+				border: darken($colour-add, 10%) 1px solid;
+				cursor: pointer;
+				border-radius: 0.3rem;
+				padding: 0.3rem;
+				margin-top: 0.5rem;
+				box-shadow: 1px 1px darken($colour-add, 40%);
+				&:hover,
+				&:active,
+				&:focus {
+					background-color: darken($colour-add, 10%);
+				}
+			}
+			svg {
+				font-size: 2rem;
+				margin-top: 0.5rem;
+				cursor: pointer;
+				color: darken($colour-primary, 0%);
+				margin-left: 1rem;
+				&:hover,
+				&:active,
+				&:focus {
+					color: darken($colour-primary, 10%);
+				}
+			}
+		}
+	}
+}

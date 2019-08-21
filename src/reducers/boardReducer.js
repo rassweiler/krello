@@ -1,74 +1,61 @@
-const initialState = {
-	display: -1,
-	boards: [
-		{
-			id: 0,
-			title: "Default Board",
-			lists: [
-				{
-					id: 0,
-					title: "Default List",
-					cards: [
-						{
-							id: 0,
-							text: "Default card text"
-						}
-					]
-				}
-			]
-		}
-	]
-};
+const initialState = {};
 
 const boardReducer = (state = initialState, action) => {
-	var newState = { ...state };
 	switch (action.type) {
-		case "ADDBOARD":
+		case "ADDBOARD": {
+			const { title, boardId } = action.payload;
 			const board = {
-				id: action.payload.id,
-				title: action.payload,
+				id: boardId,
+				title: title,
 				lists: []
 			};
-			newState.boards = [...newState.boards, board];
+			return { ...state, [boardId]: board };
+		}
+		case "REMOVEBOARD": {
+			const { boardId } = action.payload;
+			const newState = state;
+			delete newState[boardId];
 			return newState;
-		case "ADDLIST":
-			const list = {
-				id: action.payload.id,
-				title: action.payload.title,
-				cards: []
-			};
-			for (let i = 0; i < state.boards.length; ++i) {
-				if (state.boards[i].id === action.payload.board) {
-					newState.boards[i].lists = [...newState.boards[i].lists, list];
-					return newState;
-				}
+		}
+		case "EDITBOARD": {
+			const { title, boardId } = action.payload;
+			if (title) {
+				const board = state[boardId];
+				board.title = title;
+				return { ...state, [boardId]: board };
 			}
 			return state;
-		case "ADDCARD":
-			const card = {
-				id: action.payload.id,
-				text: action.payload.title
-			};
-			for (let i = 0; i < state.boards.length; ++i) {
-				if (state.boards[i].id === action.payload.board) {
-					for (let o = 0; o < state.boards[i].lists.length; ++o) {
-						if (state.boards[i].lists[o].id === action.payload.list) {
-							console.log("Cards Before", newState.boards[i].lists[o].cards);
-							newState.boards[i].lists[o].cards = [
-								...newState.boards[i].lists[o].cards,
-								card
-							];
-							console.log("Cards After", newState.boards[i].lists[o].cards);
-							return newState;
-						}
-					}
-				}
+		}
+		case "ADDLIST": {
+			const { boardId, listId } = action.payload;
+			const board = state[boardId];
+			board.lists = [...board.lists, listId];
+			return { ...state, [boardId]: board };
+		}
+		case "REMOVELIST": {
+			const { listId, boardId } = action.payload;
+			const board = state[boardId];
+			board.lists = board.lists.filter(id => id !== listId);
+			return { ...state, [boardId]: board };
+		}
+		case "SORTBOARD": {
+			const {
+				idStart,
+				idEnd,
+				indexStart,
+				indexEnd,
+				listId,
+				type
+			} = action.payload;
+			//Same list
+			if (idStart === idEnd) {
+				const list = state.find(list => idStart === list.id);
+				const card = list.cards.splice(indexStart, 1);
+				list.cards.splice(indexEnd, 0, ...card);
+				return { ...state, [idStart]: list };
 			}
-			return newState;
-		case "VIEWBOARD":
-			newState = { ...state };
-			newState.display = action.payload;
-			return newState;
+			return state;
+		}
 		default:
 			return state;
 	}
