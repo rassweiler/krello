@@ -25,7 +25,6 @@ class KrelloBoard extends Component {
 			formOpen: false
 		});
 	};
-
 	onDragEnd = result => {
 		const { destination, source, draggableId, type } = result;
 		const { boardId } = this.props.match.params;
@@ -44,7 +43,6 @@ class KrelloBoard extends Component {
 			)
 		);
 	};
-
 	onChange = event => {
 		const { boardId } = this.props.match.params;
 		this.props.dispatch(editBoard(event.target.value, boardId));
@@ -92,7 +90,7 @@ class KrelloBoard extends Component {
 												listId={list.id}
 												title={list.title}
 												cards={list.cards.map(cardId => cards[cardId])}
-												index={index}
+												listIndex={index}
 											/>
 										);
 									}

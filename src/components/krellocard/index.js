@@ -7,7 +7,7 @@ import { Draggable } from "react-beautiful-dnd";
 import { removeCard, editCard } from "../../actions";
 
 const KrelloCard = React.memo(
-	({ text, boardId, listId, cardId, index, dispatch }) => {
+	({ text, boardId, listId, cardId, cardIndex, dispatch }) => {
 		const [editing, setEditing] = useState(false);
 		const [cardText, setCardText] = useState(text);
 		const [textHeight, setTextHeight] = useState("");
@@ -48,11 +48,11 @@ const KrelloCard = React.memo(
 		};
 		const renderCard = () => {
 			return (
-				<Draggable draggableId={String(cardId)} index={index}>
+				<Draggable draggableId={String(cardId)} index={cardIndex}>
 					{provided => (
 						<div
 							ref={provided.innerRef}
-							{...provided.draggleProps}
+							{...provided.draggableProps}
 							{...provided.dragHandleProps}
 							className="krello-card"
 							test-data="card-container"

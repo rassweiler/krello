@@ -8,7 +8,7 @@ import { Droppable, Draggable } from "react-beautiful-dnd";
 import { connect } from "react-redux";
 import { removeList, editList } from "../../actions";
 
-const KrelloList = ({ title, boardId, listId, cards, index, dispatch }) => {
+const KrelloList = ({ title, boardId, listId, cards, listIndex, dispatch }) => {
 	const [listTitle, setListTitle] = useState(title);
 	const [editing, setEditing] = useState(false);
 
@@ -35,9 +35,8 @@ const KrelloList = ({ title, boardId, listId, cards, index, dispatch }) => {
 			</div>
 		);
 	};
-
 	return (
-		<Draggable draggableId={String(listId)} index={index}>
+		<Draggable draggableId={String(listId)} index={listIndex}>
 			{provided => (
 				<section
 					className="krello-list"
@@ -74,7 +73,7 @@ const KrelloList = ({ title, boardId, listId, cards, index, dispatch }) => {
 									<KrelloCard
 										key={card.id}
 										cardId={card.id}
-										index={index}
+										cardIndex={index}
 										text={card.text}
 										boardId={boardId}
 										listId={listId}
