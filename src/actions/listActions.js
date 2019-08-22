@@ -9,7 +9,7 @@ export const sortList = (
 	type
 ) => {
 	return {
-		type: "SORTLIST",
+		type: "SORT",
 		payload: { idStart, idEnd, indexStart, indexEnd, boardId, type }
 	};
 };

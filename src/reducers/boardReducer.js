@@ -38,7 +38,7 @@ const boardReducer = (state = initialState, action) => {
 			board.lists = board.lists.filter(id => id !== listId);
 			return { ...state, [boardId]: board };
 		}
-		case "SORTBOARD": {
+		case "SORT": {
 			const {
 				idStart,
 				idEnd,

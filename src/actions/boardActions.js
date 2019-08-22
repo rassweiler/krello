@@ -44,7 +44,7 @@ export const sortBoard = (
 	boardId
 ) => {
 	return {
-		type: "SORTBOARD",
+		type: "SORT",
 		payload: {
 			idStart,
 			idEnd,

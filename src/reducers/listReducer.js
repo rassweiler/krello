@@ -1,14 +1,31 @@
 const initialState = {};
 const listReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case "SORTLIST": {
-			const { idStart, idEnd, indexStart, indexEnd, id } = action.payload;
+		case "SORT": {
+			const {
+				idStart,
+				idEnd,
+				indexStart,
+				indexEnd,
+				draggableId,
+				type,
+				boardId
+			} = action.payload;
 			//Same list
+			if (type === "list") {
+				return state;
+			}
 			if (idStart === idEnd) {
-				const list = state.find(list => idStart === list.id);
+				const list = state[idStart];
 				const card = list.cards.splice(indexStart, 1);
 				list.cards.splice(indexEnd, 0, ...card);
 				return { ...state, [idStart]: list };
+			} else {
+				const startList = state[idStart];
+				const endList = state[idEnd];
+				const card = startList.cards.splice(indexStart, 1);
+				endList.cards.splice(indexEnd, 0, ...card);
+				return { ...state, [idStart]: startList, [idEnd]: endList };
 			}
 			return state;
 		}
