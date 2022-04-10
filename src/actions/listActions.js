@@ -1,4 +1,4 @@
-import uuid from "uuidv4";
+import uuid from "react-native-uuid";
 
 export const sortList = (
 	idStart,
@@ -17,7 +17,7 @@ export const sortList = (
 export const addList = (title, boardId) => {
 	return {
 		type: "ADDLIST",
-		payload: { title, boardId, listId: uuid() }
+		payload: { title, boardId, listId: uuid.v4() }
 	};
 };
 

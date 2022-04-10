@@ -4,7 +4,7 @@ Yet another trello clone. This is a learning project for several libraries inclu
 
 ## Demo
 
-Project is currently hosted [Here](https://krello.kylerassweiler.com)
+Project is currently hosted [Here](https://krello.kylerassweiler.ca)
 
 ## Setup Project
 

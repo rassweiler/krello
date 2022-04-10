@@ -1,9 +1,9 @@
-import uuid from "uuidv4";
+import uuid from "react-native-uuid";
 
 export const addCard = (text, listId) => {
 	return {
 		type: "ADDCARD",
-		payload: { cardId: uuid(), listId, text }
+		payload: { cardId: uuid.v4(), listId, text }
 	};
 };
 

@@ -1,10 +1,10 @@
-import uuid from "uuidv4";
+import uuid from "react-native-uuid";
 
 export const addBoard = title => {
 	if (title) {
 		return {
 			type: "ADDBOARD",
-			payload: { title, boardId: uuid() }
+			payload: { title, boardId: uuid.v4() }
 		};
 	} else {
 		return {

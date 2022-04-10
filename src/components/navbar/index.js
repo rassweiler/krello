@@ -28,7 +28,7 @@ class Navbar extends Component {
 							</a>
 						</li>
 						<li className="navbar-menu-list-item" test-data="navbar-menu-item">
-							<a href="https://www.kylerassweiler.com">
+							<a href="https://portfolio.kylerassweiler.ca">
 								<FontAwesomeIcon
 									icon={faPortrait}
 									className="krello-card-menu-item"

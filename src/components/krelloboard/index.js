@@ -5,6 +5,7 @@ import { activeBoard, sortBoard, editBoard } from "../../actions";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import KrelloList from "../krellolist";
 import KrelloAddButton from "../krelloaddbutton";
+import {useParams, useNavigate} from 'react-router-dom'
 
 class KrelloBoard extends Component {
 	state = {
@@ -113,4 +114,17 @@ const mapStateToProps = state => ({
 	cards: state.cards
 });
 
-export default connect(mapStateToProps)(KrelloBoard);
+const withRouter = WrappedComponent => props => {
+	const params = useParams();
+	const navigate = useNavigate();
+
+	return (
+		 <WrappedComponent
+			  {...props}
+			  params={params}
+			  navigate={navigate}
+		 />
+	);
+};
+
+export default withRouter(connect(mapStateToProps)(KrelloBoard));
